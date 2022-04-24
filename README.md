@@ -1,1 +1,1 @@
-# FriendZoned
+# Friend Zoned
