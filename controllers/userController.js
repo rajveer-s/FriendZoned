@@ -88,4 +88,22 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+
+  // remove friend
+  removeFriend(req, res) {
+    User.findByIdAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendsId } },
+      { new: true })
+      .select('-__v')
+      .then((users) =>
+        !users
+          ? res.status(404).json({ message: 'No users with this id!' })
+          : res.json(users)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 }
