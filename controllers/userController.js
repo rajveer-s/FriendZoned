@@ -55,4 +55,18 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+
+  // Delete a user
+  deleteUser(req, res) {
+    User.findOneAndDelete({ _id: req.params.userId })
+      .then((users) =>
+        !users
+          ? res.status(404).json({ message: 'No users with this id!' })
+          : res.json(users)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
 }
