@@ -10,18 +10,25 @@ const {
 } = require('../../controllers/thoughtController.js');
 
 // /api/thoughts
-router.route('/').get(getThoughts);
+router.route('/')
+  .get(getThoughts);
 
 // /api/thoughts/:userId
-router.route('/:userId/').post(createThoughts);
+router.route('/:userId/')
+  .post(createThoughts);
 
 // /api/thoughts/:id
-router.route('/:id').get(getSingleThought).put(updateThoughts).delete(deleteThoughts);
+router.route('/:id')
+  .get(getSingleThought)
+  .delete(deleteThoughts)
+  .put(updateThoughts);
 
-// /api/thoughts/reactions
-router.route('/:thoughtId/reactions').post(addReactions);
+// /api/thoughts
+router.route('/:thoughtId')
+  .post(addReactions);
 
 // /api/thoughtId/reactionId
-router.route('/:thoughtId/:reactionId').delete(deleteReactions);
+router.route('/:reactionId')
+  .delete(deleteReactions);
 
 module.exports = router;

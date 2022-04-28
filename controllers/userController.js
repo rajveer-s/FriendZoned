@@ -96,6 +96,7 @@ module.exports = {
       { $pull: { friends: req.params.friendsId } },
       { new: true })
       .select('-__v')
+      .populate('friends')
       .then((users) =>
         !users
           ? res.status(404).json({ message: 'No users with this id!' })
