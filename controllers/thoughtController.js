@@ -61,4 +61,20 @@ module.exports = {
       });
   },
 
+  // update thought
+  updateThoughts(req, res) {
+    Thought.findOneAndUpdate({ _id: req.params.id }, { $set: req.body },
+      { new: true })
+      .then((thoughts) =>
+        !thoughts
+          ? res.status(404).json({ message: 'No thoughts with this id!' })
+          : res.json(thoughts)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
+
+
 }
