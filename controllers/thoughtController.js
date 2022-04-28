@@ -76,5 +76,35 @@ module.exports = {
       });
   },
 
+  // add reaction
+  addReactions(req, res) {
+    Thought.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $push: { reactions: req.body } })
+      .then((thoughts) =>
+        !thoughts
+          ? res.status(404).json({ message: 'No thoughts with this id!' })
+          : res.json(thoughts)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
 
+  // remove reaction
+  deleteReactions(req, res) {
+    Thought.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $pull: { reactions: req.params.reactionId } })
+      .then((thoughts) =>
+        !thoughts
+          ? res.status(404).json({ message: 'No thoughts with this id!' })
+          : res.json(thoughts)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 }
