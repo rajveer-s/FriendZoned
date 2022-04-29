@@ -78,9 +78,9 @@ module.exports = {
 
   // add reaction
   addReactions(req, res) {
-    Thought.findByIdAndUpdate(
-      { _id: req.params.id },
-      { $push: { reactions: req.body } })
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } }, { new: true })
       .then((thoughts) =>
         !thoughts
           ? res.status(404).json({ message: 'No thoughts with this id!' })
@@ -95,12 +95,12 @@ module.exports = {
   // remove reaction
   deleteReactions(req, res) {
     Thought.findByIdAndUpdate(
-      { _id: req.params.id },
-      { $pull: { reactions: req.params.reactionId } })
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: req.params.reactionId } }, { new: true })
       .then((thoughts) =>
         !thoughts
-          ? res.status(404).json({ message: 'No thoughts with this id!' })
-          : res.json(thoughts)
+          ? res.status(404).json({ message: 'No reactions with this id!' })
+          : res.json({ message: 'Reaction deleted' })
       )
       .catch((err) => {
         console.log(err);
