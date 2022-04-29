@@ -6,7 +6,7 @@
 ---
 
 ## Description
-#### 
+#### This is a Backend MonogoDB and express social networking API. You can create, update and delete a user. You can also add friends. Add comments and reactions to those comments.
 
 ## Table of Contents:
   - [Description](#description)
@@ -20,7 +20,8 @@
 - [Questions?](#questions)
 
 ## Technologies Used:
-- 
+- Mongoose
+- Express
 
 ## Installation:
 ### After you have cloned the repository, make sure to run the command line below to get all the dependencies:
@@ -39,7 +40,7 @@ node server.js
 ## Links:
 
 - [Github Link](https://github.com/rajveer-s/friendzoned)
-- [Video Link]()
+- [Video Link](https://www.awesomescreenshot.com/video/8659147?key=059e1166c59e3ea6a889bbb56b41c6a5)
 
 ---
 
